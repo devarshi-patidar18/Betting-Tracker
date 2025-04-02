@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <button (click)="addMatch()">Add Match</button>
+
+        <!-- Add match Form Starts -->
+        <div *ngIf="addMatchScreen" class="card text-center"
+            style="margin: 5px 0px;    background-color: cornflowerblue;">
+
+            <div class="card-body">
+
+                <label>Team 1</label>
+                <input type="text" [(ngModel)]="match.team1" class="form-control" placeholder="Enter team 1 name">
+                <label>Team 2</label>
+                <input type="text" [(ngModel)]="match.team2" class="form-control" placeholder="Enter team 2 name">
+
+            </div>
+
+            <div class="card-header">
+                <span class="bg-primary"
+                    style="margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;"
+                    (click)="saveMatch()">Save</span>
+                <span class="bg-danger"
+                    style="margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;"
+                    (click)="match = null;this.addMatchScreen = false">Cancel</span>
+            </div>
+
+        </div>
+        <!-- Add match Form Ends -->
+         
+        <!-- Match Card Starts -->
+        <div *ngFor="let match of matches.slice().reverse(),let i=index" class="card text-center"
+            style="margin: 5px 0px;">
+            <div  class="card-footer text-muted"
+                style="border-color: var(--bs-card-cap-bg);">
+                <span style="position: absolute;left: 0;">{{match?.team1 || "Team 1"}}</span>
+                <span style="position: absolute;left: 55px;"
+                    [ngStyle]="match?.totalWinTeam1>=0 ? {'color': 'green'} : {'color': 'red'}">{{match?.totalWinTeam1 - match?.totalInvested}}</span>
+                <span>VS</span>
+                <span style="position: absolute;right: 55px;">{{match?.team2 || "Team 2"}}</span>
+                <span style="position: absolute;right: 0;"
+                    [ngStyle]="match?.totalWinTeam2>=0 ? {'color': 'green'} : {'color': 'red'}">{{match?.totalWinTeam2  - match?.totalInvested}}</span>
+            </div>
+            <div class="card-header">
+                <span class="bg-primary"
+                    style="width: 60px;;margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;" (click)="toggleAccordion(i)">
+                    {{i == clickedAccordion?'Close':'Add Bet'}}</span>
+                <span (click)="removeMatch(i)" class="bg-danger"
+                    style="margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;">Delete</span>
+            </div>
+
+            <div *ngIf="i == clickedAccordion" class="card-body" style="justify-content: center;">
+                <!-- <h5 class="card-title">Special title treatment</h5> -->
+                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <h4>Bet Details</h4>
+                <!-- <select style="height: 45px;" [(ngModel)]="match.selectedTeam" class="form-select"
+                    aria-label="Default select example">
+                    <option selected>Select Team</option>
+                    <option value="{{match.team1}}">{{match.team1}}</option>
+                    <option value="{{match.team2}}">{{match.team2}}</option>
+                    >
+                </select> -->
+                <div >
+                    <span class="bg-primary"
+                        style="margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;"
+                        (click)="selectTeam(1)" 
+                        >{{match.team1}}</span>
+                    <span class="bg-secondary"
+                        style="margin: 0 10px;border-radius: 5px; padding: 5px;color: white;cursor: pointer;"
+                        (click)="selectTeam(2)">{{match.team2}}</span>
+                </div>
+                <div style="display: flex;margin: 5px 0;justify-content: center;gap: 10px;">
+
+                    <div *ngIf="teamSelected == 1">
+                        <label>Winning amount</label>
+                        <input style="height: 45px;" type="number" [(ngModel)]="this.match.winTeam1" class="form-control"
+                            placeholder="Win">
+                        <label>Invested</label>
+                        <input style="height: 45px;" type="number" [(ngModel)]="this.match.invested" class="form-control"
+                            placeholder="Invested">
+                    </div>
+
+                    <div *ngIf="teamSelected == 2">
+                        <label>Winning amount</label>
+                        <input style="height: 45px;" type="number" [(ngModel)]="this.match.winTeam2" class="form-control"
+                            placeholder="Win">
+                        <!-- <label>Team 1</label> -->
+                        <label>Invested</label>
+                        <input style="height: 45px;" type="number" [(ngModel)]="this.match.invested" class="form-control"
+                            placeholder="Invested">
+                    </div>
+
+                </div>
+                <a disabled="((this.match.winTeam1 === null || this.match.winTeam2 === null) && this.match.invested === null)" class="btn btn-primary" (click)="saveBet(match.id,this.match)">Save BET</a>
+            </div>
+
+        </div>
+        <!-- Match Card Ends -->
+    </div>
+
+</div>

@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+.container {
+    /* max-width: 500px;
+    margin: auto;*/
+    padding: 20px 10px; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* h2, h3 {
+    color: #333;
+  } */
+  
+  .bet-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .bet-input select,
+  input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    /* padding: 6px 10px; */
+    border: none;
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    /* margin: 5px; */
+  }
+
+  :host::ng-deep{
+    .accordion-button:not(.collapsed)::after {
+      background-image: none;
+    }
+
+    .accordion-button:not(.collapsed)::after{
+        background-image: none;
+    }
+  }
+  
+  button:hover {
+    background: #218838;
+  }
+  
+  /* .summary {
+    margin: 20px 0;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    background: #fff;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  } */
+
+  a{
+    margin: 5px;
+  }
+
+  .accordion-item{
+    margin-bottom: 5px;
+    /* padding: 10px; */
+
+  .accordion-button{
+    background-color: white;
+    border: 1px solid black;
+  }
+}
